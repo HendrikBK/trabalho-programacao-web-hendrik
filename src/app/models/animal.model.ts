@@ -1,7 +1,7 @@
 import { Cliente } from "./cliente.model";
 
 export class Animal {
-    id: number;
+    id?: number;
     nome: string;
     idade: number;
     especie: String;

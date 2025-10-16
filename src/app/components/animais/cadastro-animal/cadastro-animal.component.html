@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">Cadastrar Animal</h1>
+        <form [formGroup]="formAnimal" (ngSubmit)="addAnimal()" class="mb-5">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome do Animal:</label>
+                <input type="text" class="form-control" id="nome" formControlName="nome" required />
+            </div>
+            <div class="mb-3">
+                <label for="cnpj" class="form-label">Idade:</label>
+                <input type="text" class="form-control" id="idade" formControlName="cnpj" required />
+            </div>
+            <div class="mb-3">
+                <label for="fone" class="form-label">Espécie</label>
+                <select class="form-control" id="especie" formControlName="especie" required>
+                    <option value="canino">Canino</option>
+                    <option value="felino">Felino</option>
+                    <option value="lapino">Lapino</option>
+                </select>
+            </div>
+            <!-- Adicionar campo para selecionar cliente -->
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="reset" class="ms-2 btn btn-danger">Limpar</button>
+        </form>
+    </div>
+</div>
