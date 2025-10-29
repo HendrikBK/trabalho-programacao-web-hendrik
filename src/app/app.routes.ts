@@ -5,6 +5,7 @@ import { CadastroClienteComponent } from './components/clientes/cadastro-cliente
 import { CadastroServicoComponent } from './components/servicos/cadastro-servico/cadastro-servico.component';
 import { ListarAnimalComponent } from './components/animais/listar-animal/listar-animal.component';
 import { ListarClienteComponent } from './components/clientes/listar-cliente/listar-cliente.component';
+import { ListarServicoComponent } from './components/servicos/listar-servico/listar-servico.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -13,4 +14,5 @@ export const routes: Routes = [
     { path: 'servicos/cadastro-servico', component: CadastroServicoComponent },
     { path: 'animais/listar-animais', component: ListarAnimalComponent },
     { path: 'clientes/listar-clientes', component: ListarClienteComponent },
+    { path: 'servicos/listar-servicos', component: ListarServicoComponent },
 ];

@@ -1,1 +1,21 @@
-<p>listar-servico works!</p>
+<div class="container">
+    <div class="row col-md-8 offset-md-2">
+        <h1 class="text-center">Serviços Cadastrados</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (servico of servicos; track servico.id) {
+                <tr>
+                    <th scope="row" class="text-center">{{ servico.id}}</th>
+                    <td>{{ servico.nome }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
