@@ -6,6 +6,7 @@ export class Animal {
     idade: number;
     especie: String;
     clienteId: number;
+    clienteNome?: String;    
     constructor(id: number, nome: string, idade: number, especie: string, clienteId: number) {
         this.id = id,
         this.nome = nome,
