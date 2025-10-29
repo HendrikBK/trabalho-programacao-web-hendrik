@@ -1,1 +1,29 @@
-<p>listar-animal works!</p>
+<div class="container">
+    @if(animais.length > 0){
+    <div class="row col-md-8 offset-md-2">
+        <h1 class="text-center">Animais Cadastrados</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">Nome</th>
+                    <th scope="col" class="text-center">Cliente</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (animal of animais; track animal.id) {
+                <tr>
+                    <th scope="row" class="text-center">{{ animal.id}}</th>
+                    <td>{{ animal.nome }}</td>
+                    <td class="text-center">{{ animal.clienteId }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }@else {
+    <div class="row">
+        <h1 class="text-center">Nenhum Animal Cadastrado</h1>
+    </div>
+    }
+</div>
