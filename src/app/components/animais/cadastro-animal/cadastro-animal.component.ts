@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AnimalService } from '../../../services/animais.service';
 import { Animal } from '../../../models/animal.model';
+import { Cliente } from '../../../models/cliente.model';
+import { ClienteService } from '../../../services/clientes.service';
 @Component({
   selector: 'app-cadastro-animal',
   imports: [ReactiveFormsModule],
   templateUrl: './cadastro-animal.component.html',
   styleUrl: './cadastro-animal.component.css'
 })
-export class CadastroAnimalComponent {
+export class CadastroAnimalComponent implements OnInit {
   animais: Animal[] = [];
+  clientes: Cliente[] = [];
   formAnimal = new FormGroup({
     nome: new FormControl(''),
     idade: new FormControl(''),
@@ -17,7 +20,13 @@ export class CadastroAnimalComponent {
     clienteId: new FormControl('')
   });
 
-  constructor(private animalService: AnimalService) { }
+  constructor(private animalService: AnimalService, private clienteService: ClienteService){ }
+
+  ngOnInit() {
+    this.clienteService.getAllClientes().then((clientes)=>{
+      this.clientes = clientes;
+    });
+  }
 
   addAnimal() {
     if (this.formAnimal.valid) {
