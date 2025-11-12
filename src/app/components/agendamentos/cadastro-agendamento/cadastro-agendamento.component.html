@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">Cadastrar Agendamento</h1>
+        <form [formGroup]="formAgendamento" (ngSubmit)="addAgendamento()" class="mb-5">
+            <div class="mb-3">
+                <label for="data" class="form-label">Horário do Agendamento:</label>
+                <input type="date" class="form-control" id="data" formControlName="data" [ngClass]=" { 'is-invalid' : formAgendamento.get('data')?.invalid && formAgendamento.get('data')?.touched,'is-valid': formAgendamento.get('data')?.valid && formAgendamento.get('data')?.touched }" required />
+
+                <input type="time" class="form-control" id="inicio" formControlName="inicio" [ngClass]=" { 'is-invalid' : formAgendamento.get('inicio')?.invalid && formAgendamento.get('inicio')?.touched,'is-valid': formAgendamento.get('inicio')?.valid && formAgendamento.get('inicio')?.touched }" required />
+
+                <input type="time" class="form-control" id="fim" formControlName="fim" [ngClass]=" { 'is-invalid' : formAgendamento.get('fim')?.invalid && formAgendamento.get('fim')?.touched,'is-valid': formAgendamento.get('fim')?.valid && formAgendamento.get('fim')?.touched }" required />
+                @if(formAgendamento.get('data')?.invalid && formAgendamento.get('data')?.touched){
+                <div class="form-text text-danger">Horário é obrigatório.</div>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="animalId" class="form-label">Animal:</label>
+                <select class="form-select" formControlName="animalId" name="animalId" id="animalId" aria-label="Animal" required>
+                    @for(animal of animais; track animal.id){
+                    <option [value]="animal.id">{{ animal.nome }}</option>
+                    }
+                </select>
+                <div class="form-text">Selecione o animal para o agendamento.</div>
+            </div>
+            <div class="mb-3">
+                <label for="servicoId" class="form-label">Serviço:</label>
+                <select class="form-select" formControlName="servicoId" name="servicoId" id="servicoId" aria-label="Serviço" required>
+                    @for(servico of servicos; track servico.id){
+                    <option [value]="servico.id">{{ servico.nome }}</option>
+                    }
+                </select>
+                <div class="form-text">Selecione o serviço.</div>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="formAgendamento.invalid">Salvar</button>
+            <button type="reset" class="ms-2 btn btn-danger">Limpar</button>
+        </form>
+    </div>
+</div>

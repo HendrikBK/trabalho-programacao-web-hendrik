@@ -2,7 +2,7 @@ import { Animal } from "./animal.model";
 import { Servico } from "./servico.model";
 
 export class Agendamento {
-    id: number;
+    id?: number;
     servicoId: number;
     animalId: number;
     data: Date;
