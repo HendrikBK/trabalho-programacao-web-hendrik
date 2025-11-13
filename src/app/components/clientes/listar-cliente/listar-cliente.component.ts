@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Cliente } from '../../../models/cliente.model';
 import { ClienteService } from '../../../services/clientes.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listar-cliente',
@@ -19,4 +20,22 @@ export class ListarClienteComponent {
       this.clientes = clientes;
     });
   }
+
+  deleteCliente(id: number) {
+      Swal.fire({
+        title: 'Tem certeza?',
+        text: 'Esta ação não pode ser desfeita!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, excluir!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.clienteservice.deleteCliente(id).then(() => {
+            this.getAllClientes();
+          });
+          Swal.fire('Excluído!', 'O cliente foi excluído com sucesso.', 'success');
+        }
+      });
+    }
 }

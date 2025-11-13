@@ -3,6 +3,7 @@ import { Animal } from '../../../models/animal.model';
 import { AnimalService } from '../../../services/animais.service';
 import { ClienteService } from '../../../services/clientes.service';
 import { Cliente } from '../../../models/cliente.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listar-animal',
@@ -21,7 +22,7 @@ export class ListarAnimalComponent {
     this.clienteService.getAllClientes().then((clientes) => {
       this.clientes = clientes;
     });
-    
+
   }
 
   getAllAnimais() {
@@ -33,7 +34,7 @@ export class ListarAnimalComponent {
 
   resolveNomesClientes() {
     console.log(this.animais);
-    
+
     this.animais.forEach(animal => {
       if (animal.clienteId) {
         if (this.clientesMap.has(animal.clienteId)) {
@@ -47,6 +48,24 @@ export class ListarAnimalComponent {
               }
             });
         }
+      }
+    });
+  }
+
+  deleteAnimal(id: number) {
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Esta ação não pode ser desfeita!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, excluir!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.animalservice.deleteAnimal(id).then(() => {
+          this.getAllAnimais();
+        });
+        Swal.fire('Excluído!', 'O animal foi excluído com sucesso.', 'success');
       }
     });
   }

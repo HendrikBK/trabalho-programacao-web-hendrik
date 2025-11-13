@@ -8,6 +8,7 @@ import { Servico } from '../../../models/servico.model';
 import { ServicoService } from '../../../services/servicos.service';
 import { AgendamentoService } from '../../../services/agendamento.service';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listar-agendamento',
@@ -82,5 +83,22 @@ export class ListarAgendamentosComponent {
         });
       }
 
+       deleteAgendamento(id: number) {
+          Swal.fire({
+            title: 'Tem certeza?',
+            text: 'Esta ação não pode ser desfeita!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, excluir!',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.agendamentoService.deleteAgendamento(id).then(() => {
+                this.getAllAgendamentos();
+              });
+              Swal.fire('Excluído!', 'O animal foi excluído com sucesso.', 'success');
+            }
+          });
+        }
 
   }

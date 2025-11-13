@@ -9,6 +9,7 @@
                     <th scope="col" class="text-center">Nome</th>
                     <th scope="col" class="text-center">Espécie</th>
                     <th scope="col" class="text-center">Cliente</th>
+                    <th scope="col" class="text-center">Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,7 +18,8 @@
                     <th scope="row" class="text-center">{{ animal.id}}</th>
                     <td>{{ animal.nome }}</td>
                     <td class="text-center">{{ animal.especie }}</td>
-                    <td class="text-center">{{ animal.clienteNome }}</td>                            
+                    <td class="text-center">{{ animal.clienteNome }}</td>
+                    <td class="text-center"><i class="bi bi-trash mx-2" (click)="deleteAnimal(animal.id!)"></i></td>
                 </tr>
                 }
             </tbody>

@@ -6,6 +6,7 @@
                 <tr>
                     <th scope="col" class="text-center">#</th>
                     <th scope="col" class="text-center">Nome</th>
+                    <th scope="col" class="text-center">Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -13,6 +14,7 @@
                 <tr>
                     <th scope="row" class="text-center">{{ servico.id}}</th>
                     <td>{{ servico.nome }}</td>
+                    <td class="text-center"><i class="bi bi-trash mx-2" (click)="deleteServico(servico.id!)"></i></td>
                 </tr>
                 }
             </tbody>

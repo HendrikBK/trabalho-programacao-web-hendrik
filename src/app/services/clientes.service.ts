@@ -20,4 +20,8 @@ export class ClienteService {
   getClienteById(id: number) {
     return db.clientes.get(id);    
   }
+
+  deleteCliente(id: number) {
+    return this.dbService.clientes.delete(id);
+  }
 }

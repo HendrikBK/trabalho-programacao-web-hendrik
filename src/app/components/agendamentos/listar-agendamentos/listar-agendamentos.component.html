@@ -11,6 +11,7 @@
                     <th scope="col" class="text-center">Data</th>
                     <th scope="col" class="text-center">Início</th>
                     <th scope="col" class="text-center">Fim</th>
+                    <th scope="col" class="text-center">Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +23,7 @@
                     <td class="text-center">{{ agendamento.data | date: 'dd/MM/yy' }}</td>
                     <td class="text-center">{{ agendamento.inicio}}</td>
                     <td class="text-center">{{ agendamento.fim}}</td>
+                    <td class="text-center"><i class="bi bi-trash mx-2" (click)="deleteAgendamento(agendamento.id!)"></i></td>
                 </tr>
                 }
             </tbody>

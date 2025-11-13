@@ -9,6 +9,7 @@
                     <th scope="col" class="text-center">Nome</th>
                     <th scope="col" class="text-center">CPF</th>
                     <th scope="col" class="text-center">Telefone</th>
+                    <th scope="col" class="text-center">Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +19,7 @@
                     <td>{{ cliente.nome }}</td>
                     <td class="text-center">{{ cliente.cpf }}</td>
                     <td class="text-center">{{ cliente.fone }}</td>
+                    <td class="text-center"><i class="bi bi-trash mx-2" (click)="deleteCliente(cliente.id!)"></i></td>
                 </tr>
                 }
             </tbody>

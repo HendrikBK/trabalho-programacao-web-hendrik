@@ -3,7 +3,7 @@ import { Animal } from '../models/animal.model';
 import { db, DbService } from './db.service';
 
 @Injectable(
-  {providedIn: 'root'}
+  { providedIn: 'root' }
 )
 
 export class AnimalService {
@@ -16,6 +16,10 @@ export class AnimalService {
   }
 
   getAnimalById(id: number) {
-      return db.animais.get(id);    
-    }
+    return db.animais.get(id);
+  }
+
+  deleteAnimal(id: number) {
+    return this.dbService.animais.delete(id);
+  }
 }

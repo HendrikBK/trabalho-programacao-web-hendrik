@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ServicoService } from '../../../services/servicos.service';
 import { Servico } from '../../../models/servico.model';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cadastro-servico',
   imports: [ReactiveFormsModule],

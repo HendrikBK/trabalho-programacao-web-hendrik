@@ -18,4 +18,8 @@ export class ServicoService {
   getServicoById(id: number) {
         return db.servicos.get(id);    
       }
+
+      deleteServico(id: number) {
+        return this.dbService.servicos.delete(id);
+      }
 }
