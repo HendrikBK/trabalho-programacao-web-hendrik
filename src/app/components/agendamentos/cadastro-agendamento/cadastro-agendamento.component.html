@@ -20,7 +20,6 @@
                     <option [value]="animal.id">{{ animal.nome }}</option>
                     }
                 </select>
-                <div class="form-text">Selecione o animal para o agendamento.</div>
             </div>
             <div class="mb-3">
                 <label for="servicoId" class="form-label">Serviço:</label>
@@ -29,10 +28,11 @@
                     <option [value]="servico.id">{{ servico.nome }}</option>
                     }
                 </select>
-                <div class="form-text">Selecione o serviço.</div>
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="formAgendamento.invalid">Salvar</button>
-            <button type="reset" class="ms-2 btn btn-danger">Limpar</button>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary" [disabled]="formAgendamento.invalid">Salvar</button>
+                <button type="reset" class="ms-2 btn btn-danger">Limpar</button>
+            </div>
         </form>
     </div>
 </div>

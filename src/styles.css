@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+td {
+    text-align: center;
+}
+
+form > div:last-of-type {
+    margin:auto;
+    width: fit-content;
+}

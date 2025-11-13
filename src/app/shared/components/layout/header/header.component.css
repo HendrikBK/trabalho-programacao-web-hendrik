@@ -1,0 +1,10 @@
+li {
+    list-style-type: none;
+    padding-left: 1em;
+}
+
+ul {
+    display: flex;
+    margin: auto;
+    width: fit-content;
+}
