@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Servico } from '../models/servico.model';
-import { DbService } from './db.service';
+import { db, DbService } from './db.service';
 
 @Injectable(
   { providedIn: 'root' }
@@ -14,4 +14,8 @@ export class ServicoService {
   getAllServicos(): Promise<Servico[]> {
     return this.dbService.servicos.toArray();
   }
+
+  getServicoById(id: number) {
+        return db.servicos.get(id);    
+      }
 }

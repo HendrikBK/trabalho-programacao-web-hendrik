@@ -46,13 +46,17 @@ export class CadastroAgendamentoComponent {
   addAgendamento() {
     if (this.formAgendamento.valid) {
       const horarioDate = new Date(this.formAgendamento.value.data!);
+      const horarioInicio = this.formAgendamento.value.inicio!;
+      const horarioFim = this.formAgendamento.value.fim!;
+      
       const novoAgendamento: Agendamento = {
         data: horarioDate,
-        inicio: horarioDate,
-        fim: horarioDate,
+        inicio: horarioInicio,
+        fim: horarioFim,
         servicoId: Number(this.formAgendamento.value.servicoId!),
         animalId: Number(this.formAgendamento.value.animalId!)
       };
+      console.log(horarioDate.getHours());
       this.agendamentoService.addAgendamento(novoAgendamento).then(() => {
         Swal.fire('Cadastro realizado!', 'O agendamento foi cadastrado com sucesso.', 'success');
         this.router.navigate(['agendamentos/listar-agendamentos']);

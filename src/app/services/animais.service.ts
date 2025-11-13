@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Animal } from '../models/animal.model';
-import { DbService } from './db.service';
+import { db, DbService } from './db.service';
 
 @Injectable(
   {providedIn: 'root'}
@@ -14,4 +14,8 @@ export class AnimalService {
   getAllAnimais(): Promise<Animal[]> {
     return this.dbService.animais.toArray();
   }
+
+  getAnimalById(id: number) {
+      return db.animais.get(id);    
+    }
 }

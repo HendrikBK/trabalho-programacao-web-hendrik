@@ -1,1 +1,35 @@
-<p>listar-agendamentos works!</p>
+<div class="container">
+    @if(agendamentos.length > 0){
+    <div class="row col-md-8 offset-md-2">
+        <h1 class="text-center">Agendamentos Cadastrados</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">Animal</th>
+                    <th scope="col" class="text-center">Serviço</th>
+                    <th scope="col" class="text-center">Data</th>
+                    <th scope="col" class="text-center">Início</th>
+                    <th scope="col" class="text-center">Fim</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (agendamento of agendamentos; track agendamento.id) {
+                <tr>
+                    <th scope="row" class="text-center">{{ agendamento.id}}</th>
+                    <td>{{ agendamento.animalNome }}</td>
+                    <td>{{ agendamento.servicoNome }}</td>
+                    <td class="text-center">{{ agendamento.data | date: 'dd/MM/yy' }}</td>
+                    <td class="text-center">{{ agendamento.inicio}}</td>
+                    <td class="text-center">{{ agendamento.fim}}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }@else {
+    <div class="row">
+        <h1 class="text-center">Nenhum Agendamento Cadastrado</h1>
+    </div>
+    }
+</div>
