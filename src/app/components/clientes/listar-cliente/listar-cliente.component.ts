@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Cliente } from '../../../models/cliente.model';
 import { ClienteService } from '../../../services/clientes.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-cliente',
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class ListarClienteComponent {
   clientes: Cliente[] = [];
-  constructor(private clienteservice: ClienteService) { }
+  constructor(private clienteservice: ClienteService, private router: Router) { }
   ngOnInit() {
     this.getAllClientes();
   }
@@ -19,6 +20,11 @@ export class ListarClienteComponent {
     this.clienteservice.getAllClientes().then((clientes: Cliente[]) => {
       this.clientes = clientes;
     });
+  }
+
+  
+  editCliente(id: number) {
+    this.router.navigate(['/clientes/editar-cliente', id]);
   }
 
   deleteCliente(id: number) {

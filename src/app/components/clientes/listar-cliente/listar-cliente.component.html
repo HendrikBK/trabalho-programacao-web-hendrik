@@ -19,7 +19,7 @@
                     <td>{{ cliente.nome }}</td>
                     <td class="text-center">{{ cliente.cpf }}</td>
                     <td class="text-center">{{ cliente.fone }}</td>
-                    <td class="text-center"><i class="bi bi-trash mx-2" (click)="deleteCliente(cliente.id!)"></i></td>
+                    <td class="text-center"><i class="bi bi-pen edit-icon" (click)="editCliente(cliente.id!)"></i><i class="bi bi-trash mx-2" (click)="deleteCliente(cliente.id!)"></i></td>
                 </tr>
                 }
             </tbody>

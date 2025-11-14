@@ -47,9 +47,6 @@ export class CadastroAgendamentoComponent {
         this.agendamentoId
       );
       if (agendamento) {
-        console.log(agendamento);
-
-        //const data = agendamento.data.toISOString().substring(0,10);
         const nova_data = new Date(
           agendamento.data.getTime() -
             agendamento.data.getTimezoneOffset() * 60000
