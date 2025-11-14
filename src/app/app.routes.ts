@@ -19,7 +19,7 @@ export const routes: Routes = [
     { path: 'clientes/editar-cliente/:id', component: CadastroClienteComponent },
     { path: 'servicos/cadastro-servico', component: CadastroServicoComponent },
     { path: 'servicos/listar-servicos', component: ListarServicoComponent },
-    { path: 'servico/editar-servico/:id', component: CadastroServicoComponent },
+    { path: 'servicos/editar-servico/:id', component: CadastroServicoComponent },
     { path: 'agendamentos/cadastro-agendamento', component: CadastroAgendamentoComponent },
     { path: 'agendamentos/listar-agendamentos', component: ListarAgendamentosComponent },
     { path: 'agendamentos/editar-agendamento/:id', component: CadastroAgendamentoComponent },

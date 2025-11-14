@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Servico } from '../../../models/servico.model';
 import { ServicoService } from '../../../services/servicos.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-servico',
@@ -12,10 +13,14 @@ import Swal from 'sweetalert2';
 export class ListarServicoComponent {
   servicos: Servico[] = [];
 
-  constructor(private servicoService: ServicoService) { }
+  constructor(private servicoService: ServicoService, private router: Router) { }
 
   ngOnInit() {
     this.getAllServicos();
+  }
+
+   editServico(id: number) {
+    this.router.navigate(['/servicos/editar-servico', id]);
   }
 
   getAllServicos() {
