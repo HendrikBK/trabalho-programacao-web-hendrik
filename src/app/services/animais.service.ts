@@ -8,22 +8,22 @@ import { db, DbService } from './db.service';
 
 export class AnimalService {
   constructor(private dbService: DbService) { }
-  addAnimal(animal: Animal) {
+  async addAnimal(animal: Animal) {
     return this.dbService.animais.add(animal);
   }
-  getAllAnimais(): Promise<Animal[]> {
+  async getAllAnimais(): Promise<Animal[]> {
     return this.dbService.animais.toArray();
   }
 
-  getAnimalById(id: number) {
+  async getAnimalById(id: number) {
     return db.animais.get(id);
   }
 
-  deleteAnimal(id: number) {
+  async deleteAnimal(id: number) {
     return this.dbService.animais.delete(id);
   }
 
-  updateAnimal(animal: Animal) {
+  async updateAnimal(animal: Animal) {
     return this.dbService.animais.put(animal);
     }
 }
