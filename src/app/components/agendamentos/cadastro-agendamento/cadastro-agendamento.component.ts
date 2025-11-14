@@ -9,6 +9,7 @@ import { AgendamentoService } from '../../../services/agendamento.service';
 import Swal from 'sweetalert2';
 import { AnimalService } from '../../../services/animais.service';
 import { ServicoService } from '../../../services/servicos.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-agendamento',
@@ -27,41 +28,87 @@ export class CadastroAgendamentoComponent {
     data: ['', Validators.required],
     inicio: ['', Validators.required],
     fim: ['', Validators.required],
-    valor: [null as number | null],
     servicoId: [null as number | null, Validators.required],
     animalId: [null as number | null, Validators.required]
   });
   router: any;
-  constructor(private agendamentoService: AgendamentoService, private animalService: AnimalService, private servicoService: ServicoService) { }
+  constructor(private agendamentoService: AgendamentoService, private animalService: AnimalService, private servicoService: ServicoService, private route:
+    ActivatedRoute) { }
 
-  ngOnInit() {
-    this.animalService.getAllAnimais().then((animais)=>{
+  async ngOnInit() {
+    this.agendamentoId = Number(this.route.snapshot.paramMap.get('id'));
+
+    if (this.agendamentoId) {
+      const agendamento = await
+        this.agendamentoService.getAgendamentoById(this.agendamentoId);
+      if (agendamento) {
+        console.log(agendamento);
+
+        //const data = agendamento.data.toISOString().substring(0,10);
+        const nova_data = new Date(agendamento.data.getTime() - agendamento.data.getTimezoneOffset() * 60000).toISOString().substring(0, 10)
+
+        this.formAgendamento.patchValue({
+          data: nova_data,
+          inicio: agendamento.inicio,
+          fim: agendamento.fim,
+          servicoId: agendamento.servicoId,
+          animalId: agendamento.animalId
+        });
+      };
+    }
+
+    this.animalService.getAllAnimais().then((animais) => {
       this.animais = animais;
     });
-    this.servicoService.getAllServicos().then((servicos)=>{
+    this.servicoService.getAllServicos().then((servicos) => {
       this.servicos = servicos;
     });
   }
 
+  editAgendamento() {
+    
+    const agendamentoEditado: Agendamento = {
+      id: this.agendamentoId,
+      data: new Date(this.formAgendamento.value.data!),
+      inicio: this.formAgendamento.value.inicio!,
+      fim: this.formAgendamento.value.fim!,
+      servicoId: this.formAgendamento.value.servicoId!,
+      animalId: this.formAgendamento.value.animalId!
+    };
+    this.agendamentoService.updateAgendamento(agendamentoEditado).then(() => {
+      Swal.fire('Cadastro atualizado!', 'O agendamento foi atualizado com sucesso.',
+        'success');
+      this.router.navigate(['agendamentos/listar-agendamentos']);
+    });
+    
+  }
+
   addAgendamento() {
     if (this.formAgendamento.valid) {
-      const horarioDate = new Date(this.formAgendamento.value.data!);
-      const horarioInicio = this.formAgendamento.value.inicio!;
-      const horarioFim = this.formAgendamento.value.fim!;
+      console.log(this.agendamentoId);
       
-      const novoAgendamento: Agendamento = {
-        data: horarioDate,
-        inicio: horarioInicio,
-        fim: horarioFim,
-        servicoId: Number(this.formAgendamento.value.servicoId!),
-        animalId: Number(this.formAgendamento.value.animalId!)
-      };
-      console.log(horarioDate.getHours());
-      this.agendamentoService.addAgendamento(novoAgendamento).then(() => {
-        Swal.fire('Cadastro realizado!', 'O agendamento foi cadastrado com sucesso.', 'success');
-        this.router.navigate(['agendamentos/listar-agendamentos']);
-      });
+      if (!this.agendamentoId) {
+        const horarioDate = new Date(this.formAgendamento.value.data!);
+        const horarioInicio = this.formAgendamento.value.inicio!;
+        const horarioFim = this.formAgendamento.value.fim!;
+
+        const novoAgendamento: Agendamento = {
+          data: horarioDate,
+          inicio: horarioInicio,
+          fim: horarioFim,
+          servicoId: Number(this.formAgendamento.value.servicoId!),
+          animalId: Number(this.formAgendamento.value.animalId!)
+        };
+        console.log(horarioDate.getHours());
+        this.agendamentoService.addAgendamento(novoAgendamento).then(() => {
+          Swal.fire('Cadastro realizado!', 'O agendamento foi cadastrado com sucesso.', 'success');
+          this.router.navigate(['agendamentos/listar-agendamentos']);
+        });
+      } else {
+        this.editAgendamento();
+      }
     }
+
   }
 
 }

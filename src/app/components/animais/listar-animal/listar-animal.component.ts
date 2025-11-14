@@ -4,6 +4,7 @@ import { AnimalService } from '../../../services/animais.service';
 import { ClienteService } from '../../../services/clientes.service';
 import { Cliente } from '../../../models/cliente.model';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-animal',
@@ -15,7 +16,7 @@ export class ListarAnimalComponent {
   clientesMap: Map<number, string> = new Map();
   animais: Animal[] = [];
   clientes: Cliente[] = [];
-  constructor(private animalservice: AnimalService, private clienteService: ClienteService) { }
+  constructor(private animalservice: AnimalService, private clienteService: ClienteService, private router: Router) { }
 
   ngOnInit() {
     this.getAllAnimais();
@@ -50,6 +51,10 @@ export class ListarAnimalComponent {
         }
       }
     });
+  }
+
+  editAnimal(id: number) {
+    this.router.navigate(['/animais/editar-animal', id]);
   }
 
   deleteAnimal(id: number) {

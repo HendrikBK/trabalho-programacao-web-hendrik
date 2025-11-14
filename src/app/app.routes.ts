@@ -15,8 +15,12 @@ export const routes: Routes = [
     { path: 'clientes/cadastro-cliente', component: CadastroClienteComponent },
     { path: 'servicos/cadastro-servico', component: CadastroServicoComponent },
     { path: 'animais/listar-animais', component: ListarAnimalComponent },
+    { path: 'animais/editar-animal/:id', component: CadastroAnimalComponent },
     { path: 'clientes/listar-clientes', component: ListarClienteComponent },
+    { path: 'cliente/editar-cliente/:id', component: CadastroClienteComponent },
     { path: 'servicos/listar-servicos', component: ListarServicoComponent },
+    { path: 'servico/editar-servico/:id', component: CadastroServicoComponent },
     { path: 'agendamentos/cadastro-agendamento', component: CadastroAgendamentoComponent },
     { path: 'agendamentos/listar-agendamentos', component: ListarAgendamentosComponent },
+    { path: 'agendamentos/editar-agendamento/:id', component: CadastroAgendamentoComponent },
 ];

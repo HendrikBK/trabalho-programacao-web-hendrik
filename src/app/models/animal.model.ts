@@ -4,9 +4,9 @@ export class Animal {
     id?: number;
     nome: string;
     idade: number;
-    especie: String;
+    especie: string;
     clienteId: number;
-    clienteNome?: String;    
+    clienteNome?: string;    
     constructor(id: number, nome: string, idade: number, especie: string, clienteId: number) {
         this.id = id,
         this.nome = nome,

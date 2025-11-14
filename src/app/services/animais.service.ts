@@ -22,4 +22,8 @@ export class AnimalService {
   deleteAnimal(id: number) {
     return this.dbService.animais.delete(id);
   }
+
+  updateAnimal(animal: Animal) {
+    return this.dbService.animais.put(animal);
+    }
 }
